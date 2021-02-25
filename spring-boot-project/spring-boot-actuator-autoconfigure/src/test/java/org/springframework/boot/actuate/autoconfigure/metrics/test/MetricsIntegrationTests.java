@@ -31,6 +31,7 @@ import io.micrometer.core.instrument.binder.jvm.JvmMemoryMetrics;
 import io.micrometer.core.instrument.binder.logging.LogbackMetrics;
 import io.micrometer.core.instrument.simple.SimpleConfig;
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,6 +99,11 @@ class MetricsIntegrationTests {
 
 	@Autowired
 	private MeterRegistry registry;
+
+	@AfterEach
+	void cleanup() {
+		this.registry.clear();
+	}
 
 	@SuppressWarnings("unchecked")
 	@Test
