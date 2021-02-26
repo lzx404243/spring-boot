@@ -84,6 +84,7 @@ class DelegatingFilterProxyRegistrationBeanTests extends AbstractFilterRegistrat
 		assertThat(mockFilterInitialized.get()).isNull();
 		filter.doFilter(new MockHttpServletRequest(), new MockHttpServletResponse(), new MockFilterChain());
 		assertThat(mockFilterInitialized.get()).isTrue();
+		mockFilterInitialized.remove();
 	}
 
 	@Test
