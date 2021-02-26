@@ -22,6 +22,7 @@ import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.MockClock;
 import io.micrometer.core.instrument.simple.SimpleConfig;
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -75,6 +76,11 @@ class WebMvcMetricsIntegrationTests {
 	@BeforeEach
 	void setupMockMvc() {
 		this.mvc = MockMvcBuilders.webAppContextSetup(this.context).addFilters(this.filter).build();
+	}
+
+	@AfterEach
+	void cleanup() {
+		this.registry.clear();
 	}
 
 	@Test
